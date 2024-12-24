@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Video, Users } from 'lucide-react';
+import { Badge } from "@/components/ui/badge";
 
 const LiveStream = () => {
   const [isLive, setIsLive] = React.useState(false);

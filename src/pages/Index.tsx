@@ -44,8 +44,9 @@ const sponsoredAds = [
     title: 'Sponsor Message',
     company: 'TechCorp Nigeria',
     content: 'Supporting local talent across Arewa',
-    videoUrl: 'https://example.com/sponsor-video.mp4', // Replace with actual video URL
+    videoUrl: 'https://example.com/sponsor-video.mp4',
     sponsorLink: 'https://example.com',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81' // Added thumbnailUrl
   }
 ];
 
