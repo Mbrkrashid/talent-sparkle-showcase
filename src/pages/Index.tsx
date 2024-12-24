@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import VideoCard from '@/components/VideoCard';
 import UploadModal from '@/components/UploadModal';
 import { toast } from '@/components/ui/use-toast';
+import { Badge } from '@/components/ui/badge';
 
 // Temporary mock data - this would come from your backend
 const initialPerformances = [
@@ -11,20 +12,44 @@ const initialPerformances = [
     performer: 'John Doe',
     thumbnailUrl: 'https://images.unsplash.com/photo-1518834107812-67b0b7c58434',
     votes: 15,
+    type: 'dance',
+    isLive: false,
   },
   {
     id: '2',
+    title: 'Stand-up Comedy Night',
+    performer: 'Sarah Johnson',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81',
+    votes: 20,
+    type: 'comedy',
+    isLive: true,
+  },
+  {
+    id: '3',
     title: 'Singing Performance',
     performer: 'Jane Smith',
     thumbnailUrl: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81',
     votes: 10,
+    type: 'singing',
+    isLive: false,
   },
+];
+
+const sponsoredAds = [
+  {
+    id: 'ad1',
+    title: 'Sponsor Message',
+    company: 'TechCorp Nigeria',
+    content: 'Supporting local talent across Arewa',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81',
+  }
 ];
 
 const Index = () => {
   const [performances, setPerformances] = useState(initialPerformances);
+  const [selectedType, setSelectedType] = useState<string>('all');
 
-  const handleUpload = ({ title, performer, videoFile }: { title: string; performer: string; videoFile: File }) => {
+  const handleUpload = ({ title, performer, videoFile, type }: { title: string; performer: string; videoFile: File; type: string }) => {
     // In a real app, you would upload to a storage service
     const newPerformance = {
       id: String(performances.length + 1),
@@ -32,6 +57,8 @@ const Index = () => {
       performer,
       thumbnailUrl: URL.createObjectURL(videoFile), // Temporary URL for demo
       votes: 0,
+      type,
+      isLive: false,
     };
     
     setPerformances([newPerformance, ...performances]);
@@ -51,6 +78,10 @@ const Index = () => {
     });
   };
 
+  const filteredPerformances = selectedType === 'all' 
+    ? performances 
+    : performances.filter(perf => perf.type === selectedType);
+
   return (
     <div className="min-h-screen bg-stage-dark">
       {/* Hero Section */}
@@ -68,10 +99,65 @@ const Index = () => {
         </div>
       </div>
 
+      {/* Performance Type Filter */}
+      <div className="container mx-auto px-4 py-6">
+        <div className="flex gap-2 mb-6">
+          <Badge 
+            variant={selectedType === 'all' ? 'default' : 'outline'}
+            className="cursor-pointer"
+            onClick={() => setSelectedType('all')}
+          >
+            All
+          </Badge>
+          <Badge 
+            variant={selectedType === 'singing' ? 'default' : 'outline'}
+            className="cursor-pointer"
+            onClick={() => setSelectedType('singing')}
+          >
+            Singing
+          </Badge>
+          <Badge 
+            variant={selectedType === 'dance' ? 'default' : 'outline'}
+            className="cursor-pointer"
+            onClick={() => setSelectedType('dance')}
+          >
+            Dance
+          </Badge>
+          <Badge 
+            variant={selectedType === 'comedy' ? 'default' : 'outline'}
+            className="cursor-pointer"
+            onClick={() => setSelectedType('comedy')}
+          >
+            Comedy
+          </Badge>
+        </div>
+      </div>
+
+      {/* Sponsored Ad Section */}
+      {sponsoredAds.length > 0 && (
+        <div className="container mx-auto px-4 py-6">
+          <div className="bg-stage-dark border border-stage-gold/30 rounded-lg p-4 mb-8">
+            <div className="flex items-center justify-between">
+              <div>
+                <Badge variant="secondary" className="mb-2">Sponsored</Badge>
+                <h3 className="text-white text-lg font-semibold">{sponsoredAds[0].title}</h3>
+                <p className="text-gray-400">{sponsoredAds[0].content}</p>
+                <p className="text-stage-gold text-sm mt-2">Presented by {sponsoredAds[0].company}</p>
+              </div>
+              <img 
+                src={sponsoredAds[0].thumbnailUrl} 
+                alt="Sponsor" 
+                className="w-32 h-32 object-cover rounded-lg"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Performances Grid */}
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {performances.map((performance) => (
+          {filteredPerformances.map((performance) => (
             <VideoCard
               key={performance.id}
               {...performance}
