@@ -58,10 +58,10 @@ const Index = () => {
         <div className="absolute inset-0 bg-stage-gold/10" />
         <div className="absolute inset-0 bg-spotlight animate-spotlight" />
         <h1 className="relative text-4xl font-bold text-white sm:text-6xl">
-          Got Talent Show
+          Arewa Idol Season 1
         </h1>
         <p className="relative mt-4 text-lg text-gray-300">
-          Showcase your talent and let the world vote!
+          Showcase your talent and let Arewa vote!
         </p>
         <div className="relative mt-8">
           <UploadModal onUpload={handleUpload} />
