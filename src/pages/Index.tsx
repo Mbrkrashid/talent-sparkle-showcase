@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import VideoCard from '@/components/VideoCard';
 import UploadModal from '@/components/UploadModal';
 import { toast } from '@/components/ui/use-toast';
-import { Badge } from '@/components/ui/badge';
+import { Badge } from "@/components/ui/badge";
+import SignupModal from '@/components/SignupModal';
+import JudgesPanel from '@/components/JudgesPanel';
 
-// Temporary mock data - this would come from your backend
 const initialPerformances = [
   {
     id: '1',
@@ -94,13 +95,19 @@ const Index = () => {
         <p className="relative mt-4 text-lg text-gray-300">
           Showcase your talent and let Arewa vote!
         </p>
-        <div className="relative mt-8">
+        <div className="relative mt-8 flex justify-center gap-4">
           <UploadModal onUpload={handleUpload} />
+          <SignupModal />
         </div>
       </div>
 
-      {/* Performance Type Filter */}
+      {/* Judges Panel */}
       <div className="container mx-auto px-4 py-6">
+        <JudgesPanel />
+      </div>
+
+      {/* Performance Type Filter */}
+      <div className="container mx-auto px-4">
         <div className="flex gap-2 mb-6">
           <Badge 
             variant={selectedType === 'all' ? 'default' : 'outline'}
