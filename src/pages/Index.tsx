@@ -5,6 +5,8 @@ import { toast } from '@/components/ui/use-toast';
 import { Badge } from "@/components/ui/badge";
 import SignupModal from '@/components/SignupModal';
 import JudgesPanel from '@/components/JudgesPanel';
+import LiveStream from '@/components/LiveStream';
+import SponsoredVideoAd from '@/components/SponsoredVideoAd';
 
 const initialPerformances = [
   {
@@ -42,7 +44,8 @@ const sponsoredAds = [
     title: 'Sponsor Message',
     company: 'TechCorp Nigeria',
     content: 'Supporting local talent across Arewa',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81',
+    videoUrl: 'https://example.com/sponsor-video.mp4', // Replace with actual video URL
+    sponsorLink: 'https://example.com',
   }
 ];
 
@@ -104,6 +107,23 @@ const Index = () => {
       {/* Judges Panel */}
       <div className="container mx-auto px-4 py-6">
         <JudgesPanel />
+      </div>
+
+      {/* Live Stream Section */}
+      <div className="container mx-auto px-4 py-6">
+        <LiveStream />
+      </div>
+
+      {/* Sponsored Video Ad */}
+      <div className="container mx-auto px-4 py-6">
+        {sponsoredAds.map(ad => (
+          <SponsoredVideoAd
+            key={ad.id}
+            adUrl={ad.videoUrl}
+            sponsorName={ad.company}
+            sponsorLink={ad.sponsorLink}
+          />
+        ))}
       </div>
 
       {/* Performance Type Filter */}
