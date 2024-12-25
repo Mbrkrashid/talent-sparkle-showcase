@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Heart } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
 import { Badge } from "@/components/ui/badge";
+import SocialShareButtons from './SocialShareButtons';
 
 interface VideoCardProps {
   id: string;
@@ -18,6 +19,7 @@ interface VideoCardProps {
 
 const VideoCard = ({ id, title, performer, thumbnailUrl, votes, type, isLive, onVote }: VideoCardProps) => {
   const navigate = useNavigate();
+  const shareUrl = `${window.location.origin}/performance/${id}`;
 
   return (
     <Card className="overflow-hidden bg-stage-dark border-stage-gold/20 hover:border-stage-gold/40 transition-all duration-300">
@@ -63,6 +65,7 @@ const VideoCard = ({ id, title, performer, thumbnailUrl, votes, type, isLive, on
             <Heart className="mr-2 h-4 w-4" />
             {votes} votes
           </Button>
+          <SocialShareButtons url={shareUrl} title={`Check out ${performer}'s performance: ${title}`} />
         </div>
       </div>
     </Card>
