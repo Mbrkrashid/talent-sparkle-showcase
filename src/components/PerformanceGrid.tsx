@@ -26,37 +26,37 @@ const PerformanceGrid = ({ performances, selectedType, onTypeSelect, onVote }: P
 
   return (
     <div className="container mx-auto px-4">
-      <div className="flex gap-2 mb-6">
+      <div className="flex gap-2 mb-6 overflow-x-auto pb-2 scrollbar-hide">
         <Badge 
           variant={selectedType === 'all' ? 'default' : 'outline'}
-          className="cursor-pointer"
+          className="cursor-pointer bg-[#272727] hover:bg-[#3f3f3f] text-white border-none px-3 py-1 rounded-full whitespace-nowrap"
           onClick={() => onTypeSelect('all')}
         >
           All
         </Badge>
         <Badge 
           variant={selectedType === 'singing' ? 'default' : 'outline'}
-          className="cursor-pointer"
+          className="cursor-pointer bg-[#272727] hover:bg-[#3f3f3f] text-white border-none px-3 py-1 rounded-full whitespace-nowrap"
           onClick={() => onTypeSelect('singing')}
         >
           Singing
         </Badge>
         <Badge 
           variant={selectedType === 'dance' ? 'default' : 'outline'}
-          className="cursor-pointer"
+          className="cursor-pointer bg-[#272727] hover:bg-[#3f3f3f] text-white border-none px-3 py-1 rounded-full whitespace-nowrap"
           onClick={() => onTypeSelect('dance')}
         >
           Dance
         </Badge>
         <Badge 
           variant={selectedType === 'comedy' ? 'default' : 'outline'}
-          className="cursor-pointer"
+          className="cursor-pointer bg-[#272727] hover:bg-[#3f3f3f] text-white border-none px-3 py-1 rounded-full whitespace-nowrap"
           onClick={() => onTypeSelect('comedy')}
         >
           Comedy
         </Badge>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {filteredPerformances.map((performance) => (
           <VideoCard
             key={performance.id}

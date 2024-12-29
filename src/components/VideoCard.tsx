@@ -22,48 +22,48 @@ const VideoCard = ({ id, title, performer, thumbnailUrl, votes, type, isLive, on
   const shareUrl = `${window.location.origin}/performance/${id}`;
 
   return (
-    <Card className="overflow-hidden bg-stage-dark border-stage-gold/20 hover:border-stage-gold/40 transition-all duration-300 group hover:shadow-lg hover:shadow-stage-gold/5">
+    <Card className="bg-[#0f0f0f] border-none overflow-hidden group cursor-pointer hover:bg-[#272727] transition-colors duration-200">
       <div 
-        className="relative cursor-pointer aspect-video overflow-hidden"
+        className="relative aspect-video overflow-hidden"
         onClick={() => navigate(`/performance/${id}`)}
       >
         <img 
           src={thumbnailUrl} 
           alt={title} 
-          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+          className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-          <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 flex items-center gap-2">
-            <Play className="w-12 h-12 text-white" />
+        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="absolute bottom-2 right-2 bg-black/80 rounded-sm p-1">
+            <Play className="w-6 h-6 text-white" fill="white" />
           </div>
         </div>
         {isLive && (
           <Badge 
             variant="destructive" 
-            className="absolute top-2 right-2 animate-pulse"
+            className="absolute top-2 right-2 animate-pulse bg-red-600 hover:bg-red-600"
           >
             LIVE
           </Badge>
         )}
         <Badge 
           variant="outline" 
-          className="absolute top-2 left-2 bg-black/60 text-white border-none capitalize"
+          className="absolute bottom-2 left-2 bg-black/80 text-white border-none capitalize px-2 py-0.5 text-xs"
         >
           {type}
         </Badge>
       </div>
-      <div className="p-4 space-y-4">
+      <div className="p-3 space-y-2">
         <div>
-          <h3 className="text-lg font-semibold text-white line-clamp-1 group-hover:text-stage-gold transition-colors">
+          <h3 className="text-[14px] font-medium text-white line-clamp-2 leading-tight">
             {title}
           </h3>
-          <p className="text-gray-400 text-sm">Performed by {performer}</p>
+          <p className="text-[13px] text-[#AAAAAA] mt-1">Performed by {performer}</p>
         </div>
         <div className="flex justify-between items-center gap-4">
           <Button 
             variant="outline"
             size="sm"
-            className="border-stage-gold/50 hover:border-stage-gold text-stage-gold hover:bg-stage-gold/10 transition-colors"
+            className="h-8 bg-transparent border-[#3f3f3f] text-white hover:bg-[#272727] transition-colors"
             onClick={(e) => {
               e.stopPropagation();
               onVote();
