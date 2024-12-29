@@ -13,7 +13,7 @@ const SponsoredVideoAd = ({ adUrl, sponsorName, sponsorLink }: SponsoredVideoAdP
   const [isPlaying, setIsPlaying] = React.useState(false);
 
   return (
-    <div className="bg-stage-dark border border-stage-gold/20 rounded-lg overflow-hidden mb-8">
+    <div className="bg-[#272727] rounded-xl overflow-hidden mb-6 relative group">
       <div className="relative">
         <video
           className="w-full aspect-video object-cover"
@@ -27,21 +27,21 @@ const SponsoredVideoAd = ({ adUrl, sponsorName, sponsorLink }: SponsoredVideoAdP
         </video>
         <Badge 
           variant="secondary" 
-          className="absolute top-2 right-2 bg-black/60 text-white"
+          className="absolute top-2 right-2 bg-[#272727]/90 text-white px-2 py-1"
         >
-          Sponsored
+          Advertisement
         </Badge>
       </div>
       <div className="p-4">
         <div className="flex justify-between items-center">
           <div>
-            <p className="text-white font-semibold">Sponsored by {sponsorName}</p>
-            <p className="text-gray-400 text-sm">Support local talent</p>
+            <p className="text-white font-medium">{sponsorName}</p>
+            <p className="text-[#AAAAAA] text-sm">Sponsored Content</p>
           </div>
           <Button
             variant="outline"
             size="sm"
-            className="border-stage-gold/50 hover:border-stage-gold text-stage-gold"
+            className="bg-[#272727] border-none text-white hover:bg-[#3f3f3f] transition-colors"
             onClick={() => window.open(sponsorLink, '_blank')}
           >
             <ExternalLink className="w-4 h-4 mr-2" />
